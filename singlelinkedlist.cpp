@@ -25,7 +25,7 @@ class LinkedList
         cout << "\nMasukkan Nomor Mahasiswa: ";
         cin >> nim;
 
-        Node *nodebaru = new Node;
+        Node *nodeBaru = new Node;
         nodeBaru->noMhs = nim;
 
         if (START == NULL || nim <= START->noMhs)
@@ -39,5 +39,23 @@ class LinkedList
             START = nodeBaru;
             return;
         }
+
+        Node *previous = START;
+        Node *current = START;
+
+        while ((current != NULL) && (nim >= current->noMhs))
+        {
+            if (nim == current->noMhs)
+            {
+                cout << "\nDuplikasi noMhs tidak diijinkan\n";
+                return;
+            }
+            previous = current;
+            current = current->next;
+        }
+
+        nodeBaru->next = current;
+        previous->next = nodeBaru;
     }
+    
 }
